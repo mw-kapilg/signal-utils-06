@@ -21,11 +21,7 @@ jobs:
           cache: true
 
       - name: Run tests
-        uses: matlab-actions/run-tests@v3
-        with:
-          source-folder: src
-          select-by-folder: tests
-          test-results-junit: test-results/results.xml
+        run: matlab -batch "addpath('src'); results = runtests('tests'); assertSuccess(results)"
 
       - name: Upload test results
         if: always()
